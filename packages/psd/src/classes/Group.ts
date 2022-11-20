@@ -20,6 +20,10 @@ export class Group implements NodeBase<NodeParent, NodeChild> {
     public readonly parent: NodeParent
   ) {}
 
+  get isHidden(): boolean {
+    return this.layerFrame?.layerProperties.hidden || true;
+  }
+
   get name(): string {
     return this.layerFrame?.layerProperties.name ?? "";
   }
@@ -28,6 +32,10 @@ export class Group implements NodeBase<NodeParent, NodeChild> {
   }
   get composedOpacity(): number {
     return this.parent.composedOpacity * (this.opacity / 255);
+  }
+
+  get hidden(): boolean {
+    return this.layerFrame?.layerProperties.hidden || false;
   }
 
   addChild(node: NodeChild): void {
